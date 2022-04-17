@@ -30,6 +30,9 @@ fn day3() {
     let lines: Vec<String> = helpers::file_reader::lines_from_file(
         "C:\\Users\\kevin\\DevWork\\rust\\advent_of_code\\src\\day3\\day3.txt",
     );
-    let power: u32 = day3::day3::part_one(&lines);
-    println!("{}", power);
+    // let power: u32 = day3::day3::part_one(&lines);
+    // println!("{}", power);
+
+    let life_support: u32 = day3::day3::part_two(&lines);
+    println!("{}", life_support);
 }
