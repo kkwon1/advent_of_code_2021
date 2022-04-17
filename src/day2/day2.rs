@@ -77,3 +77,33 @@ pub fn single_iteration_solution(puzzle_input: &[String]) -> u32 {
     }
     h_pos * depth
 }
+
+// =================================================
+//                PART TWO BELOW
+// =================================================
+
+pub fn part_two(puzzle_input: &[String]) -> u32 {
+    let mut h_pos = 0;
+    let mut depth = 0;
+    let mut aim = 0;
+
+    for line in puzzle_input {
+        let input_split: Vec<&str> = line.split(" ").collect();
+        let val: u32 = input_split[1].parse::<u32>().unwrap();
+
+        match input_split[0] {
+            "forward" => {
+                h_pos += val;
+                depth += aim * val;
+            }
+            "up" => {
+                aim -= val;
+            }
+            "down" => {
+                aim += val;
+            }
+            _ => (),
+        }
+    }
+    h_pos * depth
+}
