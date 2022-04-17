@@ -34,11 +34,16 @@ use crate::helpers::file_reader;
 
 pub fn get_counts(filename: &str) -> u32 {
     println!("{}", filename);
-    let lines: Vec<u32> = file_reader::lines_from_file(filename);
+    let lines: Vec<u32> = file_reader::lines_from_file(filename)
+        .iter()
+        .map(|line| line.parse::<u32>().unwrap())
+        .collect();
+
     let mut count = 0;
     let mut prev_sum = lines[0] + lines[1] + lines[2];
     let mut next_sum = 0;
     for (i, _) in lines.iter().enumerate() {
+        // knowing that there are 2000 lines total.
         if i == 0 || i >= 1998 {
             continue;
         }
