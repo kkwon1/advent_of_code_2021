@@ -18,6 +18,8 @@ fn day2() {
     let lines: Vec<String> = helpers::file_reader::lines_from_file(
         "C:\\Users\\kevin\\DevWork\\rust\\advent_of_code\\src\\day2\\day2.txt",
     );
-    let final_depth: u32 = day2::day2::get_final_depth(lines);
+    let final_depth: u32 = day2::day2::get_final_depth(&lines);
+    let other_final_depth: u32 = day2::day2::single_iteration_solution(&lines);
+    assert_eq!(final_depth, other_final_depth);
     println!("{}", final_depth);
 }

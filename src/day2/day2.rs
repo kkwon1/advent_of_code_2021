@@ -8,7 +8,7 @@ pub enum Direction {
     Invalid,
 }
 
-pub fn get_final_depth(puzzle_input: Vec<String>) -> u32 {
+pub fn get_final_depth(puzzle_input: &[String]) -> u32 {
     let directions: Vec<Direction> = convert_string_to_direction(puzzle_input);
 
     let mut h_pos = 0;
@@ -31,7 +31,7 @@ pub fn get_final_depth(puzzle_input: Vec<String>) -> u32 {
     h_pos * depth
 }
 
-fn convert_string_to_direction(puzzle_input: Vec<String>) -> Vec<Direction> {
+fn convert_string_to_direction(puzzle_input: &[String]) -> Vec<Direction> {
     let mut directions: Vec<Direction> = Vec::new();
     for line in puzzle_input {
         let input_split: Vec<&str> = line.split(" ").collect();
@@ -52,4 +52,28 @@ fn convert_string_to_direction(puzzle_input: Vec<String>) -> Vec<Direction> {
     }
 
     directions
+}
+
+pub fn single_iteration_solution(puzzle_input: &[String]) -> u32 {
+    let mut h_pos = 0;
+    let mut depth = 0;
+
+    for line in puzzle_input {
+        let input_split: Vec<&str> = line.split(" ").collect();
+        let val: u32 = input_split[1].parse::<u32>().unwrap();
+
+        match input_split[0] {
+            "forward" => {
+                h_pos += val;
+            }
+            "up" => {
+                depth -= val;
+            }
+            "down" => {
+                depth += val;
+            }
+            _ => (),
+        }
+    }
+    h_pos * depth
 }
